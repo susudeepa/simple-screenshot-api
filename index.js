@@ -14,7 +14,7 @@ const authorize = (req, res, next) => {
   next();
 };
 
-app.get("/scrape", authorize, async (req, res) => {
+app.get("/screenshot", authorize, async (req, res) => {
   const { url, mobile } = req.query;
   if (!url) {
     return res.status(400).send("URL parameter is missing");
