@@ -14,12 +14,14 @@ const captureScreenshot = async (url, mobile = false) => {
   
   try {
     const page = await browser.newPage();
-    await page.goto(url);
-
     if (mobile) {
-      await page.setViewport({ width: 375, height: 812, isMobile: true });
-    } else {
-      await page.setViewport({ width: 1080, height: 1024 });
+      await page.emulate(puppeteer.KnownDevices['iPhone 13 Pro Max']);
+    }
+    await page.setDefaultNavigationTimeout(60000);
+    await page.goto(url);
+    
+    if (!mobile) {
+      await page.setViewport({ width: 1920, height: 1080 });
     }
 
     const screenshotBuffer = await page.screenshot({ fullPage: true });
