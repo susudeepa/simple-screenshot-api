@@ -24,7 +24,7 @@ const captureScreenshot = async (url, mobile = false) => {
       await page.setViewport({ width: 1920, height: 1080 });
     }
 
-    const screenshotBuffer = await page.screenshot({ fullPage: true });
+    const screenshotBuffer = await page.screenshot({ fullPage: false });
 
     return { success: true, image: screenshotBuffer };
   } catch (error) {
